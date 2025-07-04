@@ -19,18 +19,16 @@ function AppContent() {
   const [showLogin, setShowLogin] = useState(false);
 
   const handlePlaySong = (song) => {
-    if (!user) {
-      setShowLogin(true);
-      return;
-    }
+    // Allow everyone to play songs, authentication optional
     setSelectedSong(song);
     setCurrentScreen("player");
   };
 
   const handleNavigateWithAuth = (screen) => {
+    // Only require auth for profile, admin, and payment features
     if (
       !user &&
-      ["record", "profile", "dashboard", "tournaments"].includes(screen)
+      ["profile", "dashboard", "admin", "payment"].includes(screen)
     ) {
       setShowLogin(true);
       return;
