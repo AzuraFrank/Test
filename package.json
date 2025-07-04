@@ -1,0 +1,13 @@
+{
+  "name": "karaoke-platform",
+  "version": "1.0.0",
+  "description": "Karaoke Platform Application",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm start",
+    "start": "node server.js",
+    "build": "echo 'Build script placeholder'"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
