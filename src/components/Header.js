@@ -144,8 +144,11 @@ const Header = ({ currentScreen, onNavigate, onShowLogin }) => {
                   style={headerStyles.loginButton}
                 >
                   <i className="fas fa-sign-in-alt"></i>
-                  Masuk
+                  Masuk / Daftar
                 </button>
+                <span style={headerStyles.guestText}>
+                  atau jelajahi sebagai tamu
+                </span>
               </div>
             )}
           </div>
@@ -329,6 +332,12 @@ const headerStyles = {
     display: "flex",
     alignItems: "center",
     gap: "6px",
+  },
+  guestText: {
+    fontSize: "11px",
+    opacity: 0.6,
+    fontStyle: "italic",
+    marginLeft: "8px",
   },
 };
 
