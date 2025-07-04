@@ -303,11 +303,40 @@ const styles = {
     gap: "10px",
     marginBottom: "20px",
   },
+  loginOptions: {
+    textAlign: "center",
+    marginBottom: "20px",
+  },
+  optionsText: {
+    fontSize: "0.95rem",
+    opacity: 0.8,
+    marginBottom: "15px",
+  },
   adminSection: {
     textAlign: "center",
     marginBottom: "20px",
-    paddingTop: "15px",
+    paddingTop: "20px",
     borderTop: "1px solid rgba(255,255,255,0.1)",
+  },
+  adminTitle: {
+    fontSize: "1.2rem",
+    fontWeight: "600",
+    marginBottom: "10px",
+    background: "linear-gradient(45deg, #667eea, #764ba2)",
+    WebkitBackgroundClip: "text",
+    WebkitTextFillColor: "transparent",
+  },
+  adminDesc: {
+    fontSize: "0.9rem",
+    opacity: 0.7,
+    marginBottom: "15px",
+    lineHeight: 1.4,
+  },
+  adminNote: {
+    fontSize: "0.8rem",
+    opacity: 0.6,
+    marginTop: "8px",
+    fontStyle: "italic",
   },
   adminButton: {
     background: "linear-gradient(45deg, #667eea, #764ba2)",
