@@ -84,11 +84,47 @@ class AudioEngine {
     }
   }
 
-  async play() {
+  async play(audioUrl = null) {
     await this.initialize();
 
-    // For demo purposes, create a simple oscillator tone
-    // In a real app, you would load and play an actual audio file
+    if (audioUrl) {
+      // Load and play actual audio file
+      try {
+        const response = await fetch(audioUrl);
+        const arrayBuffer = await response.arrayBuffer();
+        const audioBuffer =
+          await this.audioContext.decodeAudioData(arrayBuffer);
+
+        this.sourceNode = this.audioContext.createBufferSource();
+        this.sourceNode.buffer = audioBuffer;
+
+        // Connect source to our audio chain
+        this.sourceNode.connect(this.gainNode);
+
+        // Start playback
+        this.sourceNode.start();
+
+        // Set duration
+        this.duration = audioBuffer.duration;
+        this.startTime = this.audioContext.currentTime;
+
+        // Start visualization
+        this.startVisualization();
+
+        return Promise.resolve();
+      } catch (error) {
+        console.warn("Failed to load audio file, using demo tone:", error);
+        // Fallback to demo tone
+        return this.playDemoTone();
+      }
+    } else {
+      // Demo tone for songs without audio
+      return this.playDemoTone();
+    }
+  }
+
+  playDemoTone() {
+    // Create a pleasant demo melody
     this.sourceNode = this.audioContext.createOscillator();
     this.sourceNode.frequency.setValueAtTime(
       440,
@@ -96,10 +132,20 @@ class AudioEngine {
     );
     this.sourceNode.type = "sine";
 
+    // Add some modulation for a more pleasant sound
+    const modulator = this.audioContext.createOscillator();
+    const modulatorGain = this.audioContext.createGain();
+    modulator.frequency.value = 5;
+    modulatorGain.gain.value = 50;
+
+    modulator.connect(modulatorGain);
+    modulatorGain.connect(this.sourceNode.frequency);
+
     // Connect source to our audio chain
     this.sourceNode.connect(this.gainNode);
 
-    // Start the tone
+    // Start the tone and modulation
+    modulator.start();
     this.sourceNode.start();
 
     // Start visualization
@@ -197,9 +243,13 @@ class AudioEngine {
   }
 
   getCurrentTime() {
-    // Return mock time for demo purposes
-    // In a real implementation, this would track actual audio playback time
-    return this.audioContext ? this.audioContext.currentTime : 0;
+    if (!this.audioContext || !this.startTime) {
+      return 0;
+    }
+
+    // Calculate elapsed time since playback started
+    const elapsed = this.audioContext.currentTime - this.startTime;
+    return Math.max(0, elapsed);
   }
 
   setupVisualization(canvas) {
