@@ -61,9 +61,7 @@ const Login = ({ onClose }) => {
       <div style={styles.modal} className="card">
         <div style={styles.header}>
           <h2 style={styles.title}>
-            {isLogin
-              ? "🎤 Masuk ke Nabila Portal"
-              : "🌟 Bergabung dengan Nabila Portal"}
+            {isLogin ? "🎤 Masuk ke Nabila Portal" : "🌟 Daftar Nabila Portal"}
           </h2>
           <button
             onClick={onClose}
@@ -72,6 +70,12 @@ const Login = ({ onClose }) => {
           >
             <i className="fas fa-times"></i>
           </button>
+        </div>
+
+        <div style={styles.loginOptions}>
+          <p style={styles.optionsText}>
+            {isLogin ? "Pilih cara masuk:" : "Pilih cara daftar:"}
+          </p>
         </div>
 
         {error && (
@@ -151,14 +155,20 @@ const Login = ({ onClose }) => {
         </button>
 
         <div style={styles.adminSection}>
+          <h4 style={styles.adminTitle}>👨‍💼 Akses Admin</h4>
+          <p style={styles.adminDesc}>
+            Khusus untuk admin Nabila Portal. Gunakan akun admin yang telah
+            terdaftar.
+          </p>
           <button
             onClick={handleAdminLogin}
             className="btn"
             style={styles.adminButton}
           >
             <i className="fas fa-user-shield"></i>
-            Login Admin
+            Masuk sebagai Admin
           </button>
+          <p style={styles.adminNote}>Email: jesikamahjong@gmail.com</p>
         </div>
 
         <div style={styles.switchMode}>
