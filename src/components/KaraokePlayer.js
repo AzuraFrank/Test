@@ -73,12 +73,28 @@ const KaraokePlayer = ({ song, onNavigate }) => {
       setIsPlaying(false);
     } else {
       try {
-        await audioEngineRef.current.play();
+        // Try to play with audio URL if available, otherwise use demo
+        const audioUrl = song?.audio_url || null;
+        await audioEngineRef.current.play(audioUrl);
         setIsPlaying(true);
+
+        // Set duration if available
+        if (song?.duration) {
+          const [minutes, seconds] = song.duration.split(":").map(Number);
+          setDuration(minutes * 60 + seconds);
+        } else {
+          setDuration(240); // Default 4 minutes
+        }
+
         // Start time tracking
         const interval = setInterval(() => {
           const time = audioEngineRef.current.getCurrentTime();
           setCurrentTime(time);
+
+          // Update score based on performance (demo)
+          const newScore = Math.min(100, Math.max(0, 70 + Math.random() * 30));
+          setScore(Math.round(newScore));
+
           if (time >= duration) {
             setIsPlaying(false);
             clearInterval(interval);
@@ -86,6 +102,7 @@ const KaraokePlayer = ({ song, onNavigate }) => {
         }, 100);
       } catch (error) {
         console.error("Playback failed:", error);
+        alert("Gagal memutar audio. Menggunakan mode demo.");
       }
     }
   };
