@@ -52,7 +52,7 @@ const RecordingStudio = ({ onNavigate }) => {
     } catch (error) {
       console.error("Failed to start recording:", error);
       alert(
-        "Microphone access is required to record. Please allow microphone access and try again.",
+        "Izin akses mikrofon diperlukan untuk merekam. Harap izinkan akses mikrofon dan coba lagi.\n\nFitur perekaman akan bekerja setelah Anda memberikan izin.",
       );
     }
   };
