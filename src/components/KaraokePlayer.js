@@ -170,11 +170,23 @@ const KaraokePlayer = ({ song, onNavigate }) => {
             style={styles.backButton}
           >
             <i className="fas fa-arrow-left"></i>
-            Back
+            Kembali
           </button>
           <div style={styles.songInfo}>
             <h1 style={styles.songTitle}>{song?.title || "Perfect"}</h1>
             <p style={styles.songArtist}>{song?.artist || "Ed Sheeran"}</p>
+          </div>
+        </div>
+
+        {/* Demo Notice */}
+        <div style={styles.demoNotice}>
+          <div className="card" style={styles.demoCard}>
+            <i className="fas fa-info-circle" style={styles.demoIcon}></i>
+            <div style={styles.demoText}>
+              <strong>Mode Demo:</strong> Anda sedang menggunakan karaoke dalam
+              mode demo. Daftar akun untuk mengakses fitur lengkap, lagu HD, dan
+              recording berkualitas tinggi!
+            </div>
           </div>
         </div>
 
@@ -379,6 +391,26 @@ const styles = {
   songArtist: {
     fontSize: "1.2rem",
     opacity: 0.8,
+  },
+  demoNotice: {
+    marginBottom: "20px",
+  },
+  demoCard: {
+    padding: "15px 20px",
+    background: "rgba(255, 193, 7, 0.2)",
+    border: "1px solid rgba(255, 193, 7, 0.4)",
+    display: "flex",
+    alignItems: "center",
+    gap: "12px",
+  },
+  demoIcon: {
+    color: "#ffc107",
+    fontSize: "1.2rem",
+  },
+  demoText: {
+    flex: 1,
+    fontSize: "0.9rem",
+    lineHeight: 1.4,
   },
   playerContainer: {
     maxWidth: "900px",
