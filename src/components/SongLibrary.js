@@ -26,6 +26,7 @@ const SongLibrary = ({ onNavigate, onPlaySong }) => {
       difficulty: "Easy",
       genre: "Pop",
       image: "https://via.placeholder.com/150x150/ff6b6b/ffffff?text=🎵",
+      audio_url: "https://www.soundjay.com/misc/sounds/bell-ringing-05.wav", // Demo audio
       plays: 1250,
       rating: 4.8,
     },
@@ -37,6 +38,7 @@ const SongLibrary = ({ onNavigate, onPlaySong }) => {
       difficulty: "Hard",
       genre: "Rock",
       image: "https://via.placeholder.com/150x150/764ba2/ffffff?text=🎸",
+      audio_url: null, // Will use demo tone
       plays: 2100,
       rating: 4.9,
     },
@@ -48,6 +50,7 @@ const SongLibrary = ({ onNavigate, onPlaySong }) => {
       difficulty: "Medium",
       genre: "Pop",
       image: "https://via.placeholder.com/150x150/feca57/ffffff?text=🎤",
+      audio_url: null, // Will use demo tone
       plays: 1800,
       rating: 4.7,
     },
